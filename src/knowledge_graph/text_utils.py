@@ -1,6 +1,14 @@
 """
 Text processing utilities for the knowledge graph generator.
 """
+#--- Added for Chinese language --- 
+from re import compile
+
+_unicode_chr_splitter = compile( '(?s)((?:[\ud800-\udbff][\udc00-\udfff])|.)' ).split
+
+def split_unicode_chrs( text ):
+    return [ chr for chr in _unicode_chr_splitter( text ) if chr ]
+#-----------------------------------
 
 def chunk_text(text, chunk_size=500, overlap=50):
     """
@@ -15,8 +23,10 @@ def chunk_text(text, chunk_size=500, overlap=50):
         List of text chunks
     """
     # Split text into words
-    words = text.split()
-    
+    #words = text.split()
+    # Update for Chinese context, split by characters
+    words = split_unicode_chrs(text)
+
     # If text is smaller than chunk size, return it as a single chunk
     if len(words) <= chunk_size:
         return [text]

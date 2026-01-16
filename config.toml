@@ -11,8 +11,8 @@ max_tokens = 8192
 temperature = 0.8
 
 [chunking]
-chunk_size = 100  # Number of words per chunk
-overlap = 20      # Number of words to overlap between chunks
+chunk_size = 400  # Number of words per chunk
+overlap = 80      # Number of words to overlap between chunks
 
 [standardization]
 enabled = true             # Whether to enable entity standardization
